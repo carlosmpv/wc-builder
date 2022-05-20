@@ -1,0 +1,19 @@
+class {{ .ElementName }} {
+    connectedCallback() {
+        // called when the element is attached to the document
+        // similar to React's "componentDidMount"
+    }
+    
+    disconnectedCallback() {
+        // called on removal
+        // similar to React's "componentWillUnmount"
+    }
+    
+    attributeChangedCallback(attribute, previousValue, currentValue) {
+        // called when attributes are added, removed, or changed
+    }
+    
+    static get observedAttributes() {
+        return []
+    }
+}

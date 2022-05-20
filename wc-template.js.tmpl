@@ -1,0 +1,30 @@
+{{ define "wc" }}
+    let {{ .ElementNameCC }}Template = document.createElement('template');
+    {{ .ElementNameCC }}Template.innerHTML = `{{ .View }}`;
+
+    {{ .UDB }}
+    window.customElements.define('{{ .ElementNameKC }}', class extends HTMLElement { 
+        constructor() { 
+            super();
+            this.state = new {{ .ElementNameCC }}(); 
+            let shadowRoot = this.attachShadow({ mode: 'open' }); 
+            shadowRoot.appendChild({{ .ElementNameCC }}Template.content.cloneNode(true)); 
+        }
+        
+        connectedCallback() { 
+            this.state.connectedCallback(); 
+        }
+        
+        disconnectedCallback() {
+            this.state.disconnectedCallback(); 
+        }
+        
+        attributeChangedCallback(attribute, previousValue, currentValue) {
+            this.state.attributeChangedCallback(attribute, previousValue, currentValue);
+        }
+        
+        static get observedAttributes() { 
+            return {{ .ElementNameCC }}.observedAttributes; 
+        }
+    });
+{{ end }}
