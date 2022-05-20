@@ -27,6 +27,8 @@ type UDBArgs struct {
 }
 
 func scaffold(name string) {
+	os.Mkdir("elements", os.ModePerm)
+
 	tmpl, err := template.New("udb").Parse(UDBTemplate)
 	if err != nil {
 		log.Fatal(err)
@@ -125,11 +127,23 @@ func bundleFolder() {
 	bundle(components)
 }
 
+func showHelp() {
+	fmt.Printf("%s [new | build]\n\n\tnew <element name> - creats a new custom element on ./elements/<element name>\n\tbuild - bundles all elements to ./dist/bundle.js\n", os.Args[0])
+}
+
 func main() {
-	os.Mkdir("elements", os.ModePerm)
+	if len(os.Args) < 2 {
+		showHelp()
+		return
+	}
 
 	switch os.Args[1] {
 	case "new":
+		if len(os.Args) < 3 {
+			showHelp()
+			return
+		}
+
 		scaffold(os.Args[2])
 
 	case "build":
