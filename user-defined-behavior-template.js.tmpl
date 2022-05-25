@@ -1,4 +1,9 @@
 class {{ .ElementName }} {
+    constructor(root) {
+        // Root is shadowRoot
+        this.root = root;
+    }
+
     connectedCallback() {
         // called when the element is attached to the document
         // similar to React's "componentDidMount"

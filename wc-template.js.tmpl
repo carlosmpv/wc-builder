@@ -6,9 +6,9 @@
     window.customElements.define('{{ .ElementNameKC }}', class extends HTMLElement { 
         constructor() { 
             super();
-            this.state = new {{ .ElementNameCC }}(); 
-            let shadowRoot = this.attachShadow({ mode: 'open' }); 
-            shadowRoot.appendChild({{ .ElementNameCC }}Template.content.cloneNode(true)); 
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild({{ .ElementNameCC }}Template.content.cloneNode(true));
+            this.state = new {{ .ElementNameCC }}(shadowRoot);
         }
         
         connectedCallback() { 
